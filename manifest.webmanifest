@@ -1,0 +1,43 @@
+{
+  "name": "Prompt Master Pro",
+  "short_name": "PromptMaster",
+  "description": "Offline-first Prompt-Bibliothek mit Versionierung, Tags und Cloud-Sync",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Neuer Prompt",
+      "url": "/#/editor/new",
+      "description": "Erstelle einen neuen Prompt"
+    },
+    {
+      "name": "Einstellungen",
+      "url": "/#/settings",
+      "description": "App-Einstellungen öffnen"
+    }
+  ]
+}
