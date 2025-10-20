@@ -1,0 +1,48 @@
+{
+  "name": "prompt-master-pro",
+  "version": "1.0.0",
+  "description": "Offline-first Prompt-Bibliothek mit Versionierung, Tags und Cloud-Sync",
+  "main": "index.html",
+  "scripts": {
+    "lint": "eslint js/**/*.js",
+    "lint:fix": "eslint js/**/*.js --fix",
+    "serve": "python3 -m http.server 8000",
+    "test": "echo 'No tests yet' && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BEKO2210/Prompt-Manager-Pro.git"
+  },
+  "keywords": [
+    "prompt",
+    "ai",
+    "pwa",
+    "offline-first",
+    "versionierung",
+    "indexeddb"
+  ],
+  "author": "BEKO2210",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BEKO2210/Prompt-Manager-Pro/issues"
+  },
+  "homepage": "https://github.com/BEKO2210/Prompt-Manager-Pro#readme",
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2022": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": "warn",
+      "no-console": "off"
+    }
+  }
+}

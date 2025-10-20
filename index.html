@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prompt Master Pro - Offline-first Prompt-Bibliothek mit Versionierung, Tags und Cloud-Sync">
+    <meta name="theme-color" content="#6366f1">
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/png" href="/icons/icon-192.png">
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Prompt Master Pro">
+
+    <title>Prompt Master Pro</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="top-bar-left">
+            <button id="menu-toggle" class="icon-button" aria-label="Menü öffnen">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <h1 class="app-title">Prompt Master Pro</h1>
+        </div>
+
+        <div class="top-bar-center">
+            <div class="search-box">
+                <input
+                    type="search"
+                    id="search-input"
+                    placeholder="Suche... (Tastenkürzel: /)"
+                    aria-label="Prompts durchsuchen"
+                >
+            </div>
+        </div>
+
+        <div class="top-bar-right">
+            <button id="new-prompt-btn" class="primary-button" aria-label="Neuer Prompt">
+                + Neuer Prompt
+            </button>
+            <button id="sync-btn" class="icon-button" aria-label="Synchronisieren" title="Sync">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+            </button>
+            <button id="import-btn" class="icon-button" aria-label="Importieren" title="Import">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            </button>
+            <button id="export-btn" class="icon-button" aria-label="Exportieren" title="Export">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+            </button>
+            <button id="settings-btn" class="icon-button" aria-label="Einstellungen" title="Einstellungen">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m-6-6h-6m6 0h6m-6 0 6-6m-6 6 6 6m-6-6-6-6m6 6-6 6"></path>
+                </svg>
+            </button>
+            <button id="theme-toggle" class="icon-button" aria-label="Theme wechseln" title="Dark/Light Mode">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-section">
+                <h3>Filter</h3>
+                <div id="tag-filters" class="tag-filters">
+                    <!-- Tag filters will be rendered here -->
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Smart Filter</h3>
+                <ul class="smart-filters">
+                    <li><button data-filter="recent">Zuletzt geändert</button></li>
+                    <li><button data-filter="untagged">Ohne Tags</button></li>
+                    <li><button data-filter="archived">Archiv</button></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="main-content">
+            <!-- Content will be dynamically rendered based on route -->
+            <div id="app-view"></div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-container"></div>
+
+    <!-- Notification Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Privacy Banner -->
+    <div id="privacy-banner" class="privacy-banner" style="display: none;">
+        <p>💡 <strong>Vertrauliche Daten?</strong> Nutze lokale Verschlüsselung in den Einstellungen.</p>
+        <button id="close-privacy-banner">Verstanden</button>
+    </div>
+
+    <!-- Onboarding Overlay -->
+    <div id="onboarding-overlay" class="onboarding-overlay" style="display: none;">
+        <div class="onboarding-content">
+            <h2 id="onboarding-title">Willkommen zu Prompt Master Pro!</h2>
+            <p id="onboarding-text"></p>
+            <div class="onboarding-actions">
+                <button id="onboarding-skip">Überspringen</button>
+                <button id="onboarding-next" class="primary-button">Weiter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/lib/dexie.min.js"></script>
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
